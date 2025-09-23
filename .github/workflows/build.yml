@@ -16,7 +16,7 @@ env:
 jobs:
 
     build_macos_intel:
-        runs-on: macos-13
+        runs-on: macos-14
 
         steps:
         - uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
               path: ${{github.workspace}}/sdrpp_macos_intel.zip
 
     build_macos_arm:
-        runs-on: macos-14
+        runs-on: macos-15
 
         steps:
         - uses: actions/checkout@v4
