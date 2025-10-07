@@ -137,7 +137,10 @@ jobs:
 
         - name: Build
           working-directory: ${{github.workspace}}/build
-          run: make VERBOSE=1 -j3
+          run: |
+              export CPLUS_INCLUDE_PATH=/opt/homebrew/include:$CPLUS_INCLUDE_PATH
+              export LIBRARY_PATH=/opt/homebrew/lib:$LIBRARY_PATH
+              make VERBOSE=1 -j3
 
         - name: Create Archive
           working-directory: ${{github.workspace}}
