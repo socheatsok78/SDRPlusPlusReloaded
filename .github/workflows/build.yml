@@ -16,7 +16,7 @@ env:
 jobs:
 
     build_macos_intel:
-        runs-on: macos-14-large
+        runs-on: macos-15-large
 
         steps:
         - uses: actions/checkout@v4
