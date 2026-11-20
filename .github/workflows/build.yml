@@ -35,13 +35,13 @@ jobs:
           run: brew install pkg-config libusb fftw glfw airspy airspyhf portaudio hackrf libbladerf codec2 zstd autoconf automake libtool spdlog volk
 
         - name: Install SDRplay API
-          run: wget https://www.sdrplay.com/software/SDRplayAPI-macos-installer-universal-3.15.0.pkg && sudo installer -pkg SDRplayAPI-macos-installer-universal-3.15.0.pkg -target /
+          run: wget https://www.sdrpp.org/ci/SDRplayAPI-macos-installer-universal-3.15.1.pkg && sudo installer -pkg SDRplayAPI-macos-installer-universal-3.15.1.pkg -target /
 
         - name: Install libiio
           run: wget https://github.com/analogdevicesinc/libiio/archive/refs/tags/v0.25.zip && 7z x v0.25.zip && cd libiio-0.25 && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release .. && make -j3 && sudo make install && cd ../../
 
         - name: Install libad9361
-          run: git clone https://github.com/analogdevicesinc/libad9361-iio && cd libad9361-iio && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .. && make -j3 && sudo make install && cd ../../
+          run: git clone https://github.com/analogdevicesinc/libad9361-iio && cd libad9361-iio && git checkout libad9361-iio-v0 && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .. && make -j3 && sudo make install && cd ../../
 
         - name: Install LimeSuite
           run: git clone https://github.com/myriadrf/LimeSuite && cd LimeSuite && mkdir builddir && cd builddir && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release .. && make -j3 && sudo make install && cd ../../
@@ -60,6 +60,9 @@ jobs:
 
         - name: Install libhydrasdr
           run: git clone https://github.com/hydrasdr/rfone_host && cd rfone_host && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release .. && make -j3 && sudo make install && cd ../../
+
+        - name: Install libdlcr
+          run: wget https://dragnlabs.com/host-tools/dlcr_host_v0.3.0.zip && mkdir dlcr_host && cd dlcr_host && 7z x ../dlcr_host_v0.3.0.zip && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 .. -DCMAKE_BUILD_TYPE=Release && make -j2 && sudo make install && cd ../../
 
         - name: Prepare CMake
           working-directory: ${{github.workspace}}/build
@@ -99,13 +102,13 @@ jobs:
           run: brew install pkg-config libusb fftw glfw airspy airspyhf portaudio hackrf libbladerf codec2 zstd autoconf automake libtool spdlog volk
 
         - name: Install SDRplay API
-          run: wget https://www.sdrplay.com/software/SDRplayAPI-macos-installer-universal-3.15.0.pkg && sudo installer -pkg SDRplayAPI-macos-installer-universal-3.15.0.pkg -target /
+          run: wget https://www.sdrpp.org/ci/SDRplayAPI-macos-installer-universal-3.15.1.pkg && sudo installer -pkg SDRplayAPI-macos-installer-universal-3.15.1.pkg -target /
 
         - name: Install libiio
           run: wget https://github.com/analogdevicesinc/libiio/archive/refs/tags/v0.25.zip && 7z x v0.25.zip && cd libiio-0.25 && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release .. && make -j3 && sudo make install && cd ../../
 
         - name: Install libad9361
-          run: git clone https://github.com/analogdevicesinc/libad9361-iio && cd libad9361-iio && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .. && make -j3 && sudo make install && cd ../../
+          run: git clone https://github.com/analogdevicesinc/libad9361-iio && cd libad9361-iio && git checkout libad9361-iio-v0 && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .. && make -j3 && sudo make install && cd ../../
 
         - name: Install LimeSuite
           run: git clone https://github.com/myriadrf/LimeSuite && cd LimeSuite && mkdir builddir && cd builddir && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release .. && make -j3 && sudo make install && cd ../../
@@ -124,6 +127,9 @@ jobs:
 
         - name: Install libhydrasdr
           run: git clone https://github.com/hydrasdr/rfone_host && cd rfone_host && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_BUILD_TYPE=Release .. && make -j3 && sudo make install && cd ../../
+
+        - name: Install libdlcr
+          run: wget https://dragnlabs.com/host-tools/dlcr_host_v0.3.0.zip && mkdir dlcr_host && cd dlcr_host && 7z x ../dlcr_host_v0.3.0.zip && mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 .. -DCMAKE_BUILD_TYPE=Release && make -j2 && sudo make install && cd ../../
 
         - name: Prepare CMake
           working-directory: ${{github.workspace}}/build
